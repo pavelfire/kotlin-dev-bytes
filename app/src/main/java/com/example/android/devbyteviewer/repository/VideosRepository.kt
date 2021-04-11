@@ -32,7 +32,7 @@ import kotlinx.coroutines.withContext
 class VideosRepository(private val database: VideosDatabase){
 
     //A playlist of videos that can be shown on the screen.
-    val vdeos: LiveData<List<Video>> = Transformations.map(database.videoDao.getVideos()){
+    val videos: LiveData<List<Video>> = Transformations.map(database.videoDao.getVideos()){
         it.asDomainModel()
     }
     //Repository for fetching devbyte videos from the network and storing them on disk.
