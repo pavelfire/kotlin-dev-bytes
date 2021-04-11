@@ -17,8 +17,10 @@
 
 package com.example.android.devbyteviewer.network
 
+import com.example.android.devbyteviewer.database.DatabaseVideo
 import com.example.android.devbyteviewer.domain.Video
 import com.squareup.moshi.JsonClass
+import kotlinx.android.synthetic.main.devbyte_item.view.*
 
 /**
  * DataTransferObjects go in this file. These are responsible for parsing responses from the server
@@ -62,4 +64,16 @@ fun NetworkVideoContainer.asDomainModel(): List<Video> {
                 updated = it.updated,
                 thumbnail = it.thumbnail)
     }
+}
+//function that convers from dta transfer objects to database objects
+fun NetworkVideoContainer.asDatabaseModel(): Array<DatabaseVideo>{
+    return videos.map{
+        DatabaseVideo(
+                title = it.title,
+                description = it.description,
+                url = it.url,
+                updated = it.updated,
+                thumbnail = it.thumbnail
+        )
+    }.toTypedArray()
 }
